@@ -12,7 +12,7 @@ DEFAULT_BASE_URL = "https://api.rodiumai.io/v1"  # RodiumAI (compatible OpenAI)
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 MAX_STEPS = int(os.getenv("AGENT_MAX_STEPS", "8"))
 
-SYSTEM_PROMPT = """Tu es l'assistant personnel de Jean-Marc. Tu agis grâce à des outils réels : recherche web et actualités (Tavily), météo (WeatherAPI), Google Calendar, email (SMTP), Notion et Google Drive.
+SYSTEM_PROMPT = """Tu es l'assistant personnel de Jean-Marc. Tu agis grâce à des outils réels : recherche web et actualités (Tavily), météo (WeatherAPI), Google Calendar, email (API Gmail), Notion et Google Drive.
 
 Date et heure actuelles : {now} (fuseau {tz}).
 

@@ -19,7 +19,7 @@ Agent conversationnel qui **agit** : il choisit dynamiquement ses outils (functi
 | Recherche | `recherche_web`, `recherche_actualites` (Tavily, avec liens sources) |
 | Météo | `meteo` (WeatherAPI : actuel, prévisions 3 j, comparaison de villes) |
 | Google Calendar | `calendrier_lister`, `calendrier_rechercher`, `calendrier_creer`, `calendrier_modifier`*, `calendrier_supprimer`* |
-| Email | `email_preparer`, `email_envoyer`* (SMTP Gmail) |
+| Email | `email_preparer`, `email_envoyer`* (API Gmail ; SMTP en option) |
 | Notion | `notion_rechercher`, `notion_lire_page`, `notion_creer_page`, `notion_ajouter_contenu` |
 | Google Drive | `drive_rechercher`, `drive_metadonnees`, `drive_lire_contenu` (Docs, Sheets, Slides, texte) |
 
@@ -32,8 +32,8 @@ Agent conversationnel qui **agit** : il choisit dynamiquement ses outils (functi
 Par défaut : **RodiumAI** (`https://api.rodiumai.io/v1`, modèle `openai/gpt-4o-mini`), API compatible OpenAI. `OPENAI_API_KEY` reçoit la clé RodiumAI (`rd_sk_…`) ; `OPENAI_BASE_URL` et `MODEL` permettent de changer de fournisseur.
 
 ## Configuration (Secrets du Space)
-Voir `.env.example`. Obligatoires : `OPENAI_API_KEY`, `TAVILY_API_KEY`, `WEATHER_API_KEY`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, `SMTP_USER`, `SMTP_PASSWORD`, `NOTION_API_KEY`, `NOTION_PARENT_PAGE_ID`, `APP_USER`, `APP_PASSWORD`.
-Le refresh token Google s'obtient avec `get_google_refresh_token.py` (scopes limités : `calendar.events`, `drive.readonly`).
+Voir `.env.example`. Obligatoires : `OPENAI_API_KEY`, `TAVILY_API_KEY`, `WEATHER_API_KEY`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, `NOTION_API_KEY`, `NOTION_PARENT_PAGE_ID`, `APP_USER`, `APP_PASSWORD`.
+Le refresh token Google s'obtient avec `get_google_refresh_token.py` (scopes limités : `calendar.events`, `drive.readonly`, `gmail.send`). L'email part par l'API Gmail en HTTPS (`EMAIL_BACKEND=gmail_api`, par défaut) ; `EMAIL_BACKEND=smtp` active le repli SMTP (`SMTP_USER`, `SMTP_PASSWORD`), bloqué sur Render.
 
 ## Sécurité
 Aucun secret dans le code ; `.env` ignoré par git ; comptes de test recommandés ; accès Drive limitable à un dossier (`GOOGLE_DRIVE_FOLDER_ID`) ; erreurs renvoyées sans jeton.
