@@ -1,0 +1,11 @@
+.env
+*.env
+!.env.example
+__pycache__/
+*.pyc
+token*.json
+client_secret*.json
+credentials*.json
+.ipynb_checkpoints/
+flagged/
+.gradio/
