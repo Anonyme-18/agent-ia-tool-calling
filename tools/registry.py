@@ -38,6 +38,6 @@ def execute_tool(name, arguments, context=None):
     except ToolError as e:
         return json.dumps({"erreur": str(e)}, ensure_ascii=False)
     except Exception as e:  # erreurs réseau / API
-        log.warning("Erreur outil %s : %s", name, e)
+        log.warning("Erreur outil %s : %s : %s", name, type(e).__name__, e)
         log.debug(traceback.format_exc())
         return json.dumps({"erreur": f"Échec de l'outil {name} : {type(e).__name__} : {str(e)[:300]}"}, ensure_ascii=False)

@@ -8,7 +8,7 @@ from email.message import EmailMessage
 from .registry import tool, ToolError
 from .common import env, user_confirmed, google_headers, check, TIMEOUT
 
-GMAIL_SEND = "https://gmail.googleapis.com/gmail/v1/users/me/messages/send"
+GMAIL_SEND = "https://www.googleapis.com/gmail/v1/users/me/messages/send"
 
 
 def _backend():
